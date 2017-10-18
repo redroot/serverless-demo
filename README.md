@@ -24,7 +24,7 @@ VERY MUCH WIP
 TODO
 
 - Setup backend like service (b) that uses amazon dynamo db to persist like between client uuid and film uuid
-- - can we make it work locally or is that not important? Try as uploading all the time is a pain
+- - can we make it work locally or is that not important? Try as uploading all the time is a pain, and differences between event contents when invoking locally and curling url
 - - add scripts to Curl endpoint easily - somehow read endpoint for current stage out of environment - might not be necessary as invoking function locally uses resources in prod, but probably still useful
 - - add ability to query List endpoint
 - let us use Babel with webpack maybe?

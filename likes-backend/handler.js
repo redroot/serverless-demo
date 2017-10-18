@@ -59,8 +59,30 @@ module.exports.create = (event, context, callback) => {
   });
 }
 
+// in Lambda product, curl ing the rought with '/likes/?user_id = 1002'
+// means it turns up in event.queryStringParameters
+// locally, you have to fake this with { queryStringParameters: { user_id: "1002" }}
+// would be easy to have a local API gateway
+
 module.exports.list = (event, context, callback) => {
-  dynamoDb.scan(params, (error, result) => {
+  var search = params;
+  var queryParams = event.queryStringParameters;
+
+  // probably a nicer library to extend this query but not the problem im solving
+  if (queryParams.user_id) {
+    search = extend(search, {
+      KeyConditionExpression: "#uid = :u",
+      ExpressionAttributeNames:{
+          "#uid": "user_id"
+      },
+      ExpressionAttributeValues: {
+          ":uid": queryParams.user_id
+      }
+    });
+  }
+
+
+  dynamoDb.scan(search, (error, result) => {
     // handle potential errors
     if (error) {
       callback(null, {
