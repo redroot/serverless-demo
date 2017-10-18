@@ -1,0 +1,18 @@
+{
+  "name": "serverless-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape spec/**/*.spec.js | tap-spec"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless": "^1.23.0",
+    "tape": "^4.8.0"
+  },
+  "devDependencies": {
+    "tap-spec": "^4.1.1"
+  }
+}
