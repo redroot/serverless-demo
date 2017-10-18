@@ -3,7 +3,15 @@ service: film-backend
 provider:
   name: aws
   runtime: nodejs6.10
+  stage: ${opt:stage, ${env:DEV_STACK_NAME}}
+  profile: serverless-demo
+
 
 functions:
   getFilms:
     handler: handler.lambda
+    name: ${self:provider.stage}-getFilms
+    events:
+      - http:
+          path: films
+          method: get
