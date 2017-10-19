@@ -1,9 +1,12 @@
 service: likes-backend
 
+custom:
+  dev_stage: ${env:DEV_STACK_NAME}
+
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: ${env:DEV_STACK_NAME}
+  stage: ${opt:stage, self:custom.dev_stage}
   profile: serverless-demo
   environment:
     DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}

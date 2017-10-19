@@ -1,11 +1,19 @@
 service: film-backend
 
+custom:
+  dev_stage: ${env:DEV_STACK_NAME}
+
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: ${opt:stage, ${env:DEV_STACK_NAME}}
+  stage: ${opt:stage, self:custom.dev_stage}
   profile: serverless-demo
 
+package: # Optional deployment packaging configuration
+  exclude: # Specify the directories and files which should be excluded in the deployment package
+    - .git/**
+    - spec/
+  excludeDevDependencies: false # Config if Serverless should automatically exclude dev dependencies in the deployment package. Defaults to true
 
 functions:
   getFilms:

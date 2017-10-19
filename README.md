@@ -26,19 +26,20 @@ TODO
 - Setup backend like service (b) that uses amazon dynamo db to persist like between client uuid and film uuid
 - - can we make it work locally or is that not important? Try as uploading all the time is a pain, and differences between event contents when invoking locally and curling url
 - - add scripts to Curl endpoint easily - somehow read endpoint for current stage out of environment - might not be necessary as invoking function locally uses resources in prod, but probably still useful
-- - add ability to query List endpoint
-- let us use Babel with webpack maybe?
+- let us use Babel with webpack maybe? https://github.com/serverless-heaven/serverless-webpack
 - Move individual service tests into their own folder, add include and exclude lines to serverless.yml
 - Add ability to view all 'production' functions and 'staging' functions somehow in top level folder
 - Deployable to staging environment and production environment in obvious way - aliasing maybe?
 - Work out steps for static frontend for doing this.
 - Work out nice deployment steps
 - Work out easy monitoring an metric steps
+- Cloudfront infront of S3 bucket for caching?
+- Env vars for discovery of other services endpoints through API gateway
 
 PRODUCTION MONITORING TODO
 
 - Can we somehow manage shared production env variables for production resources like the kinesis stream that several sources need to read from.
-- Can we create production only alarms in Cloudwatch easily?
+- Can we create production only alarms in Cloudwatch easily from within repo? Terraform file.
 
 NOTES
 
@@ -53,3 +54,5 @@ NOTES
 - `package.json` required in local directory of each service, cant rely on outwards file structure
 - Updating to cloud every single time to use non local DynamoDb is a pain ... maybe all locally is better? But code works locally but not in Lambda.
 - One idea for a server would a sort of status-server style service - web viewing frontend of statuses in OK./Warning/Bad state, UPSERT/DELETE/GET to modify them with secret key, all in one service and one dynamodb thing.
+- Plugins seem pretty cool, lots of lifecycle hooks.
+- This is interesting: https://github.com/serverless/event-gateway local dev is fantastic, but can it easily be replicated in production? Do you have to deploy it to an endpoint OR is it and 1 for 1 replacement for API gateway?
