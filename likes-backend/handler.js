@@ -69,18 +69,17 @@ module.exports.list = (event, context, callback) => {
   var queryParams = event.queryStringParameters;
 
   // probably a nicer library to extend this query but not the problem im solving
-  if (queryParams.user_id) {
+  if (queryParams && queryParams.user_id) {
     search = extend(search, {
-      KeyConditionExpression: "#uid = :u",
-      ExpressionAttributeNames:{
-          "#uid": "user_id"
+      FilterExpression: "#user_id = :user_id",
+      ExpressionAttributeNames: {
+        "#user_id": "user_id"
       },
       ExpressionAttributeValues: {
-          ":uid": queryParams.user_id
+        ":user_id": queryParams.user_id
       }
     });
   }
-
 
   dynamoDb.scan(search, (error, result) => {
     // handle potential errors
@@ -88,7 +87,7 @@ module.exports.list = (event, context, callback) => {
       callback(null, {
         statusCode: error.statusCode || 501,
         headers: { 'Content-Type': 'text/plain' },
-        body: "Could not fetch the todos.",
+        body: "Could not fetch the likes - " + error.stack ,
       });
       return;
     }

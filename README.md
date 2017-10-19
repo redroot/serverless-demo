@@ -52,3 +52,4 @@ NOTES
 - DynamoDB table doesn't get delete on stage removal
 - `package.json` required in local directory of each service, cant rely on outwards file structure
 - Updating to cloud every single time to use non local DynamoDb is a pain ... maybe all locally is better? But code works locally but not in Lambda.
+- One idea for a server would a sort of status-server style service - web viewing frontend of statuses in OK./Warning/Bad state, UPSERT/DELETE/GET to modify them with secret key, all in one service and one dynamodb thing.

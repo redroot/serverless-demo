@@ -5,3 +5,5 @@
 #    PUT /todos/id
 # or pipe in URL somehow into curl e.g. echo "https://google.com" | xargs -n1 curl
 # or serverless info | grep POST/dev/lines | trim | xargs -n1 curl
+
+# serverless info
