@@ -27,8 +27,7 @@
   	try {
   		x = new(this.XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
   		x.open(data ? 'POST' : 'GET', url, 1);
-  		x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  		x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  		x.setRequestHeader('Content-type', 'Content-Type: application/json');
   		x.onreadystatechange = function () {
   			x.readyState > 3 && callback && callback(x.responseText, x);
   		};
@@ -40,7 +39,7 @@
 
   // putting in global so easier to change on the page.
   var getFilmsLocation = function () {
-    return window.filmsRoute || 'http://localhost:4000/films';
+    return window.filmsRoute || 'https://09jr3z3dwi.execute-api.us-east-1.amazonaws.com/devluke/films';
   }
 
   var getUserId = function () {
@@ -70,14 +69,9 @@
     var list = $(selectors.filmList);
     $(selectors.filmClick).addEventListener('click', function () {
       ajax(getFilmsLocation(), function (responseText) {
-        var response = JSON.parse(responseText);
-        if (response.statusCode == "200") {
-          var body = JSON.parse(response.body);
-          var content = body.map(filmTemplate).join("");
-          list.innerHTML = content;
-        } else {
-          console.log('Ah, something went wrong fetching the films');
-        }
+        var body = JSON.parse(responseText);
+        var content = body.map(filmTemplate).join("");
+        list.innerHTML = content;
       })
     });
   };

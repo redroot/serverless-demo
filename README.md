@@ -25,14 +25,13 @@ TODO
 
 - Setup backend like service (b) that uses amazon dynamo db to persist like between client uuid and film uuid
 - - add scripts to Curl endpoint easily - somehow read endpoint for current stage out of environment - might not be necessary as invoking function locally uses resources in prod, but probably still useful
-- let us use Babel with webpack maybe? https://github.com/serverless-heaven/serverless-webpack
-- How to do you handle discovery of URLs to expose to other services? Default to staging or deve-nvironment? Can local file frontend use devluke stage URLs?
+- How to do you handle discovery of URLs to expose to other services? Default to staging or dev environment? Can local file frontend use devluke stage URLs?
 - Add ability to view all 'production' functions and 'staging' functions somehow in top level folder
 - Deployable to staging environment and production environment in obvious way - aliasing maybe?
 - Work out steps for static frontend for doing this.
 - Work out nice deployment steps
 - Work out easy monitoring an metric steps
-- Cloudfront infront of S3 bucket for caching?
+- Cloudfront infront of S3 bucket for caching? yeah defo
 - Env vars for discovery of other services endpoints through API gateway?
 
 PRODUCTION MONITORING TODO

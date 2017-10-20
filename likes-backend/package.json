@@ -5,7 +5,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "uuid": "^2.0.3",
-    "extend": "^3.0.1"
+    "aws-sdk": "^2.137.0",
+    "extend": "^3.0.1",
+    "uuid": "^2.0.3"
   }
 }

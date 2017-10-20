@@ -9,6 +9,12 @@ var params = {
   TableName: process.env.DYNAMODB_TABLE,
 };
 
+var defaultHeaders =  {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "*",
+  "Content-Type": "text/plain"
+}
+
 module.exports.create = (event, context, callback) => {
   var timestamp = new Date().getTime();
 
@@ -43,7 +49,7 @@ module.exports.create = (event, context, callback) => {
       console.error(error);
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: defaultHeaders,
         body: 'Couldn\'t create the like entry.' + error.stack,
       });
       return;
@@ -86,7 +92,7 @@ module.exports.list = (event, context, callback) => {
     if (error) {
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: defaultHeaders,
         body: "Could not fetch the likes - " + error.stack ,
       });
       return;
