@@ -20,23 +20,23 @@
        Serverless Demo
      </h1>
      <p class="subtitle">
-       My first website with Serverless!
+       My first website with Serverless! <small>Tested in Chrome, no garauntees on other browsers);</small>
      </p>
      <div class="tile is-ancestor">
 
        <div class="tile is-4">
          <div class="new-user box">
-           Looks like you are a new user! Click this button to generate your client id: <br/>
+           Looks like you are a new user! Click this button to generate your client id: <br/><br />
            <a class="js-new-user button is-primary">Generate ID</a>
          </div>
-         <div class="existing-user box is-hidden">
-          Your user id is : <span class="js-user-id">...</span>
+         <div class="existing-user box">
+          Your user id is : <span class="js-user-id">...</span><br/><br />
+          <a class="js-delete-user button is-danger">Delete ID</a>
          </div>
        </div>
 
-       <div class="tile is-4">
+       <div class="tile is-8">
          <div class="tile is-child box">
-           <h3>The Films</h3>
            <a href="#" class="button js-load-films">Load Films</a>
            <ul class="films"></ul>
          </div>
