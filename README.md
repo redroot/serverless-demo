@@ -36,8 +36,8 @@ TODO
 
 PRODUCTION MONITORING TODO
 
-- Can we somehow manage shared production env variables for production resources like the kinesis stream that several sources need to read from.
-- Can we create production only alarms in Cloudwatch easily from within repo? Terraform file.
+- Can we somehow manage shared production env variables for production resources like the kinesis stream that several sources need to read from. Build with CI to merge in prod level environment variables
+- Can we create production only alarms in Cloudwatch easily from within repo? Think so https://github.com/ACloudGuru/serverless-plugin-aws-alerts
 
 NOTES
 
@@ -48,7 +48,7 @@ NOTES
 - - Offboarding - remove dev-name stack by running `serverless remove --verbose --stage dev-luke` for potentially every function on the stage
 - This might be useful https://github.com/svdgraaf/serverless-plugin-stage-variables
 - And this https://github.com/FidelLimited/serverless-plugin-warmup
-- DynamoDB table doesn't get delete on stage removal
+- DynamoDB table doesn't get delete on stage removal - PR?
 - `package.json` required in local directory of each service, cant rely on outwards file structure
 - Updating to cloud every single time to use non local DynamoDb is a pain ... maybe all locally is better? But code works locally but not in Lambda.
 - One idea for a server would a sort of status-server style service - web viewing frontend of statuses in OK./Warning/Bad state, UPSERT/DELETE/GET to modify them with secret key, all in one service and one dynamodb thing.

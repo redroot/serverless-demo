@@ -24,7 +24,7 @@ module.exports.create = (event, context, callback) => {
   if (typeof data.user_id !== 'string' || typeof data.film_id !== 'string') {
     callback(null, {
       statusCode: 400,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: defaultHeaders,
       body: 'Couldn\'t create the like item. Validation failed.',
     });
     return;

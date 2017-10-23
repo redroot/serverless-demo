@@ -39,7 +39,11 @@
 
   // putting in global so easier to change on the page.
   var getFilmsLocation = function () {
-    return window.filmsRoute || 'https://09jr3z3dwi.execute-api.us-east-1.amazonaws.com/devluke/films';
+    return window.filmsRoute || 'https://f56r4rjtpk.execute-api.us-east-1.amazonaws.com/devluke/films';
+  }
+
+  var getLikesLocation = function () {
+    return window.likesRoute || 'https://n3b0rgt5v0.execute-api.us-east-1.amazonaws.com/devluke/likes';
   }
 
   var getUserId = function () {
@@ -54,11 +58,22 @@
     return localStorage.removeItem(localStorageKey);
   }
 
+  var addLike = function (userId, filmId) {
+    console.log('add Like', userId, filmId);
+    ajax(getLikesLocation(), function(responseText) {
+      console.log('IT WORKED', responseText);
+    }, { user_id: userId, film_id: filmId });
+  }
+
   var filmTemplate = function (data) {
     return `
       <li class='film-item'>
         <h4><strong>${data.name}<strong></h4>
         <h5>${data.release} | ${data.director}</h5>
+        <a class='button is-small is-success js-like-film'  data-id='${data.id}'>
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+          &nbsp;Like
+        </a>
         <br />
       </li>
     `;
@@ -73,6 +88,15 @@
         var content = body.map(filmTemplate).join("");
         list.innerHTML = content;
       })
+    });
+  };
+
+  var setupLikes = function () {
+    document.addEventListener('click', function () {
+      var targetElement = event.target || event.srcElement
+      if (targetElement && targetElement.className.indexOf('js-like-film') > -1) {
+        addLike(getUserId(), targetElement.getAttribute('data-id'));
+      }
     });
   };
 
@@ -106,8 +130,9 @@
   };
 
   var init = function () {
-    setupFilms();
     setupUserId();
+    setupFilms();
+    setupLikes();
     toggleUserBox();
   };
 
