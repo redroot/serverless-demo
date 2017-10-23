@@ -4,12 +4,11 @@ plugins:
   - serverless-finch
 
 custom:
-  dev_stage: ${env:DEV_STACK_NAME}
   client:
     bucketName: serverless-demo-frontend-${opt:stage, self:provider.stage}
 
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: ${opt:stage, self:custom.dev_stage}
+  stage: ${opt:stage, "dev"}
   profile: serverless-demo

@@ -1,13 +1,18 @@
 service: film-backend
 
 custom:
-  dev_stage: ${env:DEV_STACK_NAME}
+  config: ${file(config/${opt:stage, "dev"}.yml)}
+  env_specific_variable: ${self:custom.config.ENV_SPECIFIC_VARIABLE}
 
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: ${opt:stage, self:custom.dev_stage}
+  stage: dev
   profile: serverless-demo
+  stackTags:
+    author: myself
+    environment: ${opt:stage, self:provider.stage}
+    product: ${self:service}
 
 package: # Optional deployment packaging configuration
   exclude: # Specify the directories and files which should be excluded in the deployment package
